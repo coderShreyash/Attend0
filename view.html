@@ -74,7 +74,9 @@ return "";
 }
 </style>
 </head>
-<body onload="if(getCookie('teacher').trim().length>0){
+<body onload="
+document.getElementById('loading').style.display='block';
+if(getCookie('teacher').trim().length>0){
   document.getElementById('main').style.display='none';
   document.getElementById('popup').style.display='block';
 document.getElementById('loading').style.display='none';
@@ -82,12 +84,14 @@ document.getElementById('loading').style.display='none';
 }
 else{
   document.getElementById('main').style.display='none';
+  document.body.style='background:rgba(0,0,0,0.2);'
+
 
 setTimeout(function(){
+  document.body.style='background:rgba(255,255,255);'
 document.getElementById('loading').style.display='none';
 document.getElementById('main').style.display='block';
-
-},4750
+},4000
 )}
 if(localStorage.getItem('formsubs')!==null){
 formds = localStorage.getItem('formsubs')
@@ -102,7 +106,7 @@ document.getElementById('main').innerHTML='<div id=pop><center><h2 style=margin-
 "
 >
 <div id="loading" class="load">
-  <img src="https://cdn.dribbble.com/users/973570/screenshots/10288203/media/39ab7b715cfd865249a1b705ec250161.gif" alt="loading..." width="200">
+  <img src="https://miro.medium.com/max/1600/1*CsJ05WEGfunYMLGfsT2sXA.gif" alt="loading..." width="200">
   
   <center>
     <h2>Loading Form ...</h2>
@@ -203,13 +207,13 @@ document.getElementById('main').innerHTML='<div id=pop><center><h2 style=margin-
     <script>
         
         var database = firebase.database();
-        var title=location.search.split("&")[0].slice(7);
+        var title=location.search.split("&")[0].slice(7).replaceAll('%20',' ');
         var clas="";
         var roll="";
         var pic="";
         var sec="";
         var sub="";
-        var id = location.search.split("&")[1].slice(3)+location.search.split("&")[0].slice(7)
+        var id = location.search.split("&")[1].slice(3)+location.search.split("&")[0].slice(7).replaceAll('%20',' ')
         var image=""
         var date=""
         var time;
