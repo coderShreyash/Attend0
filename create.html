@@ -72,7 +72,8 @@ font-size: 30px;
   </div>
   <div id="main">
     <form>
-        <input type="text" id="title" name="title" placeholder="Enter Title " maxlength="25" style="width:95%" required>
+        <input type="text" id="title" name="title" placeholder="Enter Title " maxlength="25" style="width:95%" required
+        onkeyup="checkvd()">
         <h2>Ask Name: </h2>
         <input type="radio" name="name" value="on" required checked ><label>Yes</label>
         <input type="radio" name="name" value="off" required disabled><label>No</label>
@@ -216,7 +217,10 @@ document.getElementById("title").focus();
       }
      
     }
-   
+   function checkvd(){
+    
+    document.getElementById('title').value=document.getElementById('title').value.replaceAll("'","").replaceAll("#","").replaceAll(";","").replaceAll(":","").replaceAll("~","").replaceAll("`","").replaceAll('"',"");
+   }
     </script>
 </body>
 </html>
