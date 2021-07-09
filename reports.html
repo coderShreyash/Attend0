@@ -25,10 +25,20 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 </script>
+<style>
+    div{
+        width: max-content;
+        margin-bottom: 10px;
+    }
+</style>
 </head>
-<body onload="doIt()">
-    <label for="">Select Form: </label><select id="options">
+<body onload="onload=doIt()">
+    <div>
+    <label for="">Select Form: </label><select id="options" onchange="document.getElementById('title').innerHTML=document.getElementById('options').value.slice(13)">
     </select>
+</div>
+
+    <div>
     <label >Select Class:</label>
     <select id="class">
         <option>All</option>
@@ -46,6 +56,9 @@
         <option>12</option>
 
     </select>
+    </div>
+    
+    <div>
     <label >Select Section:</label>
     <select id="section">
         <option>All</option>
@@ -56,10 +69,11 @@
         <option>E</option>
         <option>F</option>
         <option>G</option>
-
-
     </select>
+    </div>
+    <div >
     <button onclick="inter()">See Respones</button><BR>
+    </div>
     <label style="display: none;" id="big">Wait For <label id="wait"></label></label>
     <h1 id="title"></h1>
     <h2>Total Responses: </h2>
@@ -90,9 +104,10 @@ function doIt(){
         var forms = getCookie("Forms")
         for(var i = forms;i>=1;i--){
             form = getCookie(("Form"+(i).toString()))
-            document.getElementById("options").innerHTML+="<option value='"+form+"''>"+i+". "+form.slice(13)+"</option>"
+            document.getElementById("options").innerHTML+="<option value="+form+">"+i+". "+form.slice(13)+"</option>"
             document.getElementById("title").innerHTML=form.slice(13);
         }
+        document.getElementById('title').innerHTML=document.getElementById('options').value.slice(13)
     }
     var responses = 0;
     
